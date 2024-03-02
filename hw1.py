@@ -38,8 +38,7 @@ def get_birthdays_per_week(users):
         day_of_week = next_day.strftime("%A")
         if birthdays_per_week[day_of_week]:
             print(f"{day_of_week}: {', '.join(birthdays_per_week[day_of_week])}")
-        else:
-            print(f"{day_of_week}: Нічого святкового.")
+        
 
 # Приклад використання
 users = [
