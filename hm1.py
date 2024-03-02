@@ -1,1 +1,1 @@
-hm1.py
+print("HM1")
