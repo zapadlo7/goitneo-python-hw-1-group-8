@@ -2,26 +2,26 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 
 def get_birthdays_per_week(users):
-    # Отримуємо поточну дату
+    # Поточна дату
     today = datetime.today().date()
 
-    # Створюємо словник для зберігання днів народження користувачів за днем тижня
+    # Словник для зберігання днів народження користувачів за днем тижня
     birthdays_per_week = defaultdict(list)
 
     # Проходимо по кожному користувачу
     for user in users:
         name = user["name"]
-        birthday = user["birthday"].date()  # Конвертуємо до типу date
+        birthday = user["birthday"].date()  # Конвертація Дати
 
-        # Оцінюємо дату на цей рік
+        # Оцінка Дати на Цей Рік
         birthday_this_year = birthday.replace(year=today.year)
         if birthday_this_year < today:  # Якщо день народження вже був цього року
             birthday_this_year = birthday_this_year.replace(year=today.year + 1)
 
-        # Порівнюємо з поточною датою
+        # Порівняння з Поточною Датою
         delta_days = (birthday_this_year - today).days
 
-        # Визначаємо день тижня
+        # Визначення Дня Тижня
         if delta_days < 7:  # Якщо день народження в наступному тижні
             birthday_weekday = birthday_this_year.strftime("%A")
             # Користувачів, у яких день народження був на вихідних, привітати в понеділок
@@ -42,7 +42,7 @@ def get_birthdays_per_week(users):
 
 # Приклад використання
 users = [
-    {"name": "Bill Gates", "birthday": datetime(1955, 3, 9)},
+    {"name": "Bill Gates", "birthday": datetime(1955, 3, 8)},
     {"name": "Steve Jobs", "birthday": datetime(1955, 3, 4)},
     {"name": "Mark Zuckerberg", "birthday": datetime(1984, 3, 3)},
     {"name": "Kim Kardashian", "birthday": datetime(1975, 3, 7)}

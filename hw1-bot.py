@@ -1,18 +1,20 @@
 def parse_input(user_input):
-    cmd, *args = user_input.split(maxsplit=1)
+    cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
-    return cmd, args[0].split() if args else []
+    return cmd, args
 
 def add_contact(args, contacts):
     if len(args) != 2:
-        return "Invalid number of arguments. Usage: add [name] [phone]"
+        raise ValueError("Invalid number of arguments. Usage: add [name] [phone]")
+    
     name, phone = args
     contacts[name] = phone
     return f"Contact '{name}' with phone number '{phone}' added successfully."
 
 def change_contact(args, contacts):
     if len(args) != 2:
-        return "Invalid number of arguments. Usage: change [name] [phone]"
+        raise ValueError("Invalid number of arguments. Usage: change [name] [phone]")
+    
     name, phone = args
     if name in contacts:
         contacts[name] = phone
@@ -20,16 +22,17 @@ def change_contact(args, contacts):
     else:
         return f"Contact '{name}' not found."
 
-def get_phone(args, contacts):
+def show_phone(args, contacts):
     if len(args) != 1:
-        return "Invalid number of arguments. Usage: phone [name]"
+        raise ValueError("Invalid number of arguments. Usage: phone [name]")
+    
     name = args[0]
     if name in contacts:
         return f"Phone number for contact '{name}' is {contacts[name]}."
     else:
         return f"Contact '{name}' not found."
 
-def get_all_contacts(contacts):
+def show_all(contacts):
     if not contacts:
         return "No contacts found."
     else:
@@ -48,13 +51,22 @@ def main():
         elif command == "hello":
             print("How can I help you?")
         elif command == "add":
-            print(add_contact(args, contacts))
+            try:
+                print(add_contact(args, contacts))
+            except ValueError as e:
+                print(e)
         elif command == "change":
-            print(change_contact(args, contacts))
+            try:
+                print(change_contact(args, contacts))
+            except ValueError as e:
+                print(e)
         elif command == "phone":
-            print(get_phone(args, contacts))
+            try:
+                print(show_phone(args, contacts))
+            except ValueError as e:
+                print(e)
         elif command == "all":
-            print(get_all_contacts(contacts))
+            print(show_all(contacts))
         else:
             print("Invalid command.")
 
