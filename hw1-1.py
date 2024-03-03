@@ -42,8 +42,8 @@ def get_birthdays_per_week(users):
 
 # Приклад використання
 users = [
-    {"name": "Bill Gates", "birthday": datetime(1955, 3, 8)},
-    {"name": "Steve Jobs", "birthday": datetime(1955, 3, 5)},
+    {"name": "Bill Gates", "birthday": datetime(1955, 3, 9)},
+    {"name": "Steve Jobs", "birthday": datetime(1955, 3, 4)},
     {"name": "Mark Zuckerberg", "birthday": datetime(1984, 3, 3)},
     {"name": "Kim Kardashian", "birthday": datetime(1975, 3, 7)}
 ]
